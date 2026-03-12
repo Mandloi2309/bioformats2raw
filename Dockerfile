@@ -9,12 +9,12 @@
 
 # Similarly, the BUILD_IMAGE argument can be overwritten
 # but this is generally not needed.
-ARG BUILD_IMAGE=gradle:6.9-jdk8
+ARG BUILD_IMAGE=gradle:8.14.4-jdk11
 
 #
 # Build phase: Use the gradle image for building.
 #
-FROM ${BUILD_IMAGE} as build
+FROM ${BUILD_IMAGE} AS build
 USER root
 RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq libblosc1
 RUN mkdir /bioformats2raw && chown 1000:1000 /bioformats2raw
@@ -28,7 +28,7 @@ RUN gradle build
 RUN cd build/distributions && rm bioformats2raw*tar && unzip bioformats2raw*zip && rm -rf bioformats2raw*zip
 
 
-FROM openjdk:8 as final
+FROM eclipse-temurin:11.0.12_7-jdk AS final
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update -y -q \
