@@ -461,6 +461,20 @@ but most panorama images are large enough that a pyramid will be generated.
 Note that the `X`, `Y`, and `Z` channels in the raw data are calibration images. While these 3 channels appear first
 in the .mcd file, `MCDReader` moves them to the end of the channel list for a better viewing experience in OMERO.
 
+Docker Commands
+=======
+
+To build a Docker Image
+```
+docker build . -t <TAG> --platform --platform linux/amd64,linux/arm64
+```
+To run the commands
+
+```
+docker run -it <TAG> [CMDs] [ARGs]
+```
+
+
 License
 =======
 
