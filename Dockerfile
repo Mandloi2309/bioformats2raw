@@ -28,7 +28,8 @@ RUN gradle build
 RUN cd build/distributions && rm bioformats2raw*tar && unzip bioformats2raw*zip && rm -rf bioformats2raw*zip
 
 
-FROM eclipse-temurin:11.0.12_7-jdk AS final
+# FROM eclipse-temurin:11.0.12_7-jdk AS final
+FROM eclipse-temurin:21-jdk-noble AS final
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update -y -q \
